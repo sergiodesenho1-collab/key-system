@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portaria SENAC v4.0</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>PORTARIA</h2>
+
+    <button onclick="showSection('home')">🏠 Início</button>
+    <button onclick="showSection('keys')">🗝️ Chaves</button>
+    <button onclick="showSection('rooms')">🚪 Salas</button>
+    <button onclick="showSection('users')">👤 Usuários</button>
+    <button onclick="showSection('access')">📋 Acessos</button>
+    <button onclick="showSection('camera')">📷 Câmera</button>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main class="content">
+
+    <!-- HOME -->
+    <section id="home" class="section active">
+      <h1>Dashboard</h1>
+
+      <div class="card">� Usuário: <b id="loggedUser">Nenhum</b></div>
+      <div class="card">�🗝️ Chaves em uso: <b id="totalKeys">0</b></div>
+      <div class="card">🚪 Salas ocupadas: <b id="totalRooms">0</b></div>
+      <div class="card">👤 Último acesso: <b id="lastUser">Nenhum</b></div>      <button onclick="logout()" style="margin-top:16px; padding:10px 14px; border:none; background:#d33; color:#fff; cursor:pointer;">Sair</button>    </section>
+
+    <!-- CHAVES -->
+    <section id="keys" class="section">
+
+      <h2>Controle de Chaves</h2>
+
+      <div class="card">
+        <select id="keySelect"></select>
+        <button onclick="openCameraForKey()">Pegar chave</button>
+      </div>
+
+      <!-- LOGIN CAMERA -->
+      <div id="keyForm" class="card" style="display:none;">
+
+        <h3>Autenticação por câmera</h3>
+
+        <video id="video" autoplay playsinline></video>
+
+        <p id="faceResult"></p>
+
+        <input id="manualName" placeholder="Nome (opcional)" />
+
+        <button onclick="confirmAccess()">Confirmar acesso</button>
+        <button onclick="stopCamera()">Sair da câmera</button>
+
+      </div>
+
+      <h3>Histórico</h3>
+      <div id="keyHistory"></div>
+
+    </section>
+
+    <!-- SALAS -->
+    <section id="rooms" class="section">
+      <h2>Salas</h2>
+      <div id="roomList"></div>
+    </section>
+
+    <!-- USUÁRIOS -->
+    <section id="users" class="section">
+      <h2>Usuários ativos</h2>
+      <div id="userList"></div>
+    </section>
+
+    <!-- ACESSOS -->
+    <section id="access" class="section">
+      <h2>Acessos em tempo real</h2>
+      <div id="accessList"></div>
+    </section>
+
+    <!-- CÂMERA CADASTRO -->
+    <section id="camera" class="section">
+
+      <h2>Cadastro Facial</h2>
+
+      <video id="videoRegister" autoplay playsinline></video>
+      <canvas id="canvas" style="display:none;"></canvas>
+
+      <input id="faceName" placeholder="Nome da pessoa" />
+      <input id="faceEmail" placeholder="E-mail da pessoa" />
+      <input id="faceMatricula" placeholder="Matrícula / senha" />
+
+      <button onclick="startCamera('videoRegister')">Abrir câmera</button>
+      <button onclick="captureFace()">Cadastrar rosto</button>
+      <button onclick="stopCamera()">Sair da câmera</button>
+
+      <p id="faceMsg"></p>
+      <div id="registeredFaces"></div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- JS -->
+<script src="dashboard.js"></script>
+
+</body>
+</html>

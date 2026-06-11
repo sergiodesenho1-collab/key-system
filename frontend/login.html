@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SENAC - Sistema de Acesso</title>
+
+  <!-- IA FACIAL (APENAS UMA VEZ) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="page">
+
+    <div class="card">
+
+      <!-- CABEÇALHO -->
+      <div class="header">
+
+        <img 
+          src="https://portoalegre.wordcamp.org/2017/files/2017/03/senac-logo.png?w=640"
+          alt="Logo SENAC"
+          class="logo"
+        />
+
+        <h1>Portal de Acesso</h1>
+        <p class="sub">Serviço Nacional de Aprendizagem Comercial</p>
+
+      </div>
+
+      <!-- LOGIN -->
+      <div class="box">
+
+        <input id="loginEmail" type="email" placeholder="E-mail institucional" />
+        <input id="loginPassword" type="password" placeholder="Senha de acesso" />
+
+        <button onclick="login()">Entrar</button>
+
+      </div>
+
+      <div class="divider">ou</div>
+
+      <!-- CÂMERA -->
+      <video id="video" autoplay playsinline></video>
+
+      <!-- AÇÕES -->
+      <div class="btns">
+
+        <button onclick="startCamera('video')">Abrir câmera</button>
+        <button onclick="authenticateFace()">Autenticar rosto</button>
+        <button onclick="stopCamera()">Sair da câmera</button>
+        <button onclick="showRegisterBox()">Cadastrar rosto</button>
+
+      </div>
+
+      <!-- STATUS -->
+      <div class="face-status">
+        <p id="loginStatus">📷 Posicione o rosto na câmera</p>
+      </div>
+
+      <!-- CADASTRO FACIAL -->
+      <div id="registerBox" style="display:none; margin-top: 16px;">
+        <h3>Cadastro Facial</h3>
+
+        <input id="faceName" placeholder="Nome da pessoa" />
+        <input id="faceEmail" placeholder="E-mail da pessoa" />
+        <input id="faceMatricula" placeholder="Matrícula / senha" />
+
+        <canvas id="canvasLogin" style="display:none;"></canvas>
+
+        <button onclick="captureFaceLogin()">Cadastrar rosto</button>
+
+        <p id="faceMsg"></p>
+      </div>
+
+      <!-- MENSAGEM -->
+      <p id="loginMsg"></p>
+      <div id="registeredFaces"></div>
+
+    </div>
+
+  </div>
+
+  <!-- 🔥 JS CORRETO PARA LOGIN FACIAL -->
+  <script src="face-login.js"></script>
+
+</body>
+</html>
