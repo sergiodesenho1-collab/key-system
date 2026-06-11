@@ -149,6 +149,14 @@ async function captureFaceLogin() {
   setMessage("faceMsg", "✔ Rosto cadastrado com sucesso");
 }
 
+function getDashboardPath() {
+  const path = window.location.pathname;
+  if (path.endsWith("/") || path.endsWith("/index.html") || !path.includes("/frontend/")) {
+    return "frontend/dashboard.html";
+  }
+  return "dashboard.html";
+}
+
 /* =========================
    MOSTRAR BOX CADASTRO
 ========================= */
@@ -189,7 +197,7 @@ async function authenticateFace() {
     setMessage("loginMsg", `⚠ Sistema facial indisponível. Entrando como ${user.name}`, 6000);
     localStorage.setItem("currentUser", user.email);
     setTimeout(() => {
-      window.location.href = "dashboard.html";
+      window.location.href = getDashboardPath();
     }, 1200);
     return;
   }
@@ -216,7 +224,7 @@ async function authenticateFace() {
   localStorage.setItem("currentUser", user?.email || result.label);
 
   setTimeout(() => {
-    window.location.href = "dashboard.html";
+    window.location.href = getDashboardPath();
   }, 1200);
 }
 
@@ -246,14 +254,14 @@ function login() {
   }
 
   localStorage.setItem("currentUser", email);
-  window.location.href = "dashboard.html";
+  window.location.href = getDashboardPath();
 }
 
 /* =========================
    IR PARA DASHBOARD
 ========================= */
 function goToDashboard() {
-  window.location.href = "dashboard.html";
+  window.location.href = getDashboardPath();
 }
 
 /* =========================
