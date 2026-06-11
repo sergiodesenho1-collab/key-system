@@ -93,6 +93,26 @@ function trainFaces() {
   faceMatcher = new faceapi.FaceMatcher(labeled);
 }
 
+function renderRegisteredUsers() {
+  const list = document.getElementById("registeredFaces");
+  if (!list) return;
+
+  const faces = getFaces();
+  list.innerHTML = "";
+
+  faces.forEach(face => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <strong>${face.name}</strong><br>
+      ✉ ${face.email}<br>
+      🆔 ${face.matricula}<br>
+      📅 ${face.registeredAt}
+    `;
+    list.appendChild(div);
+  });
+}
+
 /* =========================
    CADASTRAR ROSTO
 ========================= */

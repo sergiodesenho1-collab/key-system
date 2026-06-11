@@ -127,10 +127,15 @@ function getCurrentUserName() {
   return user ? user.name : email;
 }
 
+function getLoginPath() {
+  const path = window.location.pathname;
+  return path.includes("/frontend/") ? "../" : "index.html";
+}
+
 function requireLogin() {
   const user = getCurrentUser();
   if (!user) {
-    window.location.href = "login.html";
+    window.location.href = getLoginPath();
     return null;
   }
   return user;
@@ -138,7 +143,7 @@ function requireLogin() {
 
 function logout() {
   localStorage.removeItem("currentUser");
-  window.location.href = "login.html";
+  window.location.href = getLoginPath();
 }
 
 /* =========================
